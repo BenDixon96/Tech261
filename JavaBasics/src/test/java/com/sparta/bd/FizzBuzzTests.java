@@ -35,7 +35,7 @@ public class FizzBuzzTests {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3, 6, 9})
+    @ValueSource(ints = {3, 6, 9, 12})
     void givenAnInputOfThreeFizzBuzzReturnsFizz(int input) {
         String expected = "Fizz";
 
@@ -60,14 +60,26 @@ public class FizzBuzzTests {
         Assertions.assertEquals(expected, actual);
     }
     @ParameterizedTest
-    @CsvSource({"15, 15",
-            "30, 30",
-            "45, 45"})
-    void givenAnInputOfFifteenWithCsvShouldReturnFizzBuzz(int input){
-        String expected = "FizzBuzz";
+    @CsvSource({"15, FizzBuzz",
+            "30, FizzBuzz",
+            "45, FizzBuzz"})
+    void givenAnInputOfFifteenWithCsvShouldReturnFizzBuzz(int input, String expected){
+
         String actual = FizzBuzz.getFizzBuzzFrom(input);
         Assertions.assertEquals(expected, actual);
 
+    }
+    @Test
+    void givenAnInputOfZeroFizzBuzzReturnsZero() {
+        // Arrange
+        int input = 0;
+        String expected = "0";
+
+        // Act
+        String actual = FizzBuzz.getFizzBuzzFrom(input);
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
     }
 
 }
